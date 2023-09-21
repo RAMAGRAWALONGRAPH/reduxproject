@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 
 const UserSchema = new mongoose.Schema({
-    counterValue :{
-        type: Number
+ user :{
+        type: String
     },
-    name :{
+    email :{
         type: String
     }
 })

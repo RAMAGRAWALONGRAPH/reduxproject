@@ -4,43 +4,45 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const api = createApi({
   
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-  // Configure the base URL for your backend API
-  endpoints: (builder) => ({
-    saveCounter: builder.mutation({
-      
-      query: (body) => {
-        console.log(body)
-        return {
-        url: '/save-counter',
-        method: 'POST',
-        body,
-      }},
-    }),
 
-    getSaveCounter: builder.query({
-      
+  endpoints: (builder) => ({
+    saveUser: builder.mutation({
       query: (body) => ({
-        url: '/get-save-counter',
+        url: '/save-user',
         method: 'POST',
         body,
       }),
     }),
 
-    // getCounterData: builder.query({
-    //   query: () => ({
-    //     url: '/get-counter-data', // Use a more descriptive endpoint name
-    //     method: 'GET', // Use GET for data retrieval
-    //   }),
-    // }),
-    
+    getSaveUser: builder.query({
+      query: (body) => ({
+        url: '/get-save-user',
+        method: 'GET',
+        body,
+      }),
+    }),
 
-    // endpoints: (builder) => ({
-    //   getData: builder.query({
-    //     query: () => '/get-data', // Specify the GET endpoint URL
-    //   }),
+    deleteSaveUser: builder.mutation({
+      query: (id) => ({
+       url: `/delete-save-user/${id}`,
+        method: 'DELETE',
+     }),
+    }),
+
+
+
+    
+    editSaveUser: builder.mutation({
+      query: (data) => ({
+        url: "/edit-save-user",
+        method: 'PUT',
+        body: data
+     }),
+    }),
+
   }),
 });
 
-export const { useSaveCounterMutation } = api;
+export const { useSaveUserMutation , useGetSaveUserQuery, useDeleteSaveUserMutation, useEditSaveUserMutation} = api;
 
 export default api;
