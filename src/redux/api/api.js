@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const api = createApi({
   
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-
+  tagTypes : ["posts"],
   endpoints: (builder) => ({
     saveUser: builder.mutation({
       query: (body) => ({
@@ -12,6 +12,7 @@ const api = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ["posts"]
     }),
 
     getSaveUser: builder.query({
@@ -19,7 +20,9 @@ const api = createApi({
         url: '/get-save-user',
         method: 'GET',
         body,
+        
       }),
+      providesTags: ["posts"]
     }),
 
     deleteSaveUser: builder.mutation({
@@ -27,6 +30,7 @@ const api = createApi({
        url: `/delete-save-user/${id}`,
         method: 'DELETE',
      }),
+     invalidatesTags: ["posts"]
     }),
 
 
@@ -38,6 +42,7 @@ const api = createApi({
         method: 'PUT',
         body: data
      }),
+     invalidatesTags: ["posts"]
     }),
 
   }),

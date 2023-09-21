@@ -25,13 +25,11 @@ function Counter() {
   const [saveUser, { isLoading }] = useSaveUserMutation();
   const [deleteSaveUser] = useDeleteSaveUserMutation();
   const [editSaveUser] = useEditSaveUserMutation();
-  const { data ,isLoading: fetchUserLoading, isSuccess: fetchUserSuccess, refetch} = useGetSaveUserQuery();
+  const { data ,isLoading: fetchUserLoading, isSuccess: fetchUserSuccess} = useGetSaveUserQuery();
   
 
 
-useEffect (()=>{
-  refetch();
-},[name])
+
 
 const handleEdit = async (id) => {
   try {
@@ -67,7 +65,7 @@ const handleDelete = async (id) => {
    
     await deleteSaveUser(id);
     setName("")
-    await refetch(); 
+ 
    
    
   } catch (error) {
@@ -113,6 +111,8 @@ const handleDelete = async (id) => {
           <tr>
           <th>Name</th>
           <th>Email</th>
+          <th>Edit</th>
+          <th>Delete</th>
           </tr>
         </thead>
         <tbody>
